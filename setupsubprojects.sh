@@ -5,7 +5,7 @@ travisworkingdir="/home/travis/build/"
 testsdir="${travisworkingdir}KAMP-Research/KAMP/tests"
 featuresdir="${travisworkingdir}KAMP-Research/KAMP/features"
 updatesitedir="${travisworkingdir}KAMP-Research/KAMP/releng/edu.kit.ipd.sdq.kamp.updatesite"
-stubsdir="/tmp/KAMPBuildUtilities/"
+stubsdir="/tmp/KAMP_BuildUtilities/"
 
 ########################
 #Clone every subproject#
