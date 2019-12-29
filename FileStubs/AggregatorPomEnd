@@ -1,0 +1,5 @@
+		<module>edu.kit.ipd.sdq.kamp.model.modificationmarks.editor</module>
+		<module>edu.kit.ipd.sdq.kamp.model.modificationmarks.edit</module>
+	</modules>
+	
+</project>

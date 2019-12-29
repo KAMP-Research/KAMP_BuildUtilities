@@ -2,6 +2,7 @@
 
 #Travis working directory
 travisworkingdir="/home/travis/build/"
+bundlesdir="${travisworkingdir}KAMP-Research/KAMP/bundles"
 testsdir="${travisworkingdir}KAMP-Research/KAMP/tests"
 featuresdir="${travisworkingdir}KAMP-Research/KAMP/features"
 updatesitedir="${travisworkingdir}KAMP-Research/KAMP/releng/edu.kit.ipd.sdq.kamp.updatesite"
@@ -16,6 +17,18 @@ localgit="${travisworkingdir}$(cut -d' ' -f 2 <<< $arg)"
 echo "Cloning $remotegithub into $localgit"
 git clone $remotegithub $localgit
 done
+
+###########################################
+#Add the subprojects to the aggregator pom#
+###########################################
+cat ${stubsdir}FileStubs/AggregatorPomStart > ${bundlesdir}/pom.xml
+for arg; do
+localgit="$(cut -d' ' -f 2 <<< $arg)"
+folder=$(basename "$localgit")
+echo -e "\t\t <module>$folder</module>" >> ${bundlesdir}/pom.xml
+done
+cat ${stubsdir}FileStubs/AggregatorPomEnd >> ${bundlesdir}/pom.xml
+
 
 #Important note: submodules won't automatically be loaded into the aggregator pom of KAMP!
 #Could be added here
