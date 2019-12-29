@@ -29,10 +29,6 @@ echo -e "\t\t <module>$folder</module>" >> ${bundlesdir}/pom.xml
 done
 cat ${stubsdir}FileStubs/AggregatorPomEnd >> ${bundlesdir}/pom.xml
 
-
-#Important note: submodules won't automatically be loaded into the aggregator pom of KAMP!
-#Could be added here
-
 ########################################
 #Extract the tests for every subproject#
 ########################################
