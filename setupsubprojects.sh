@@ -35,8 +35,23 @@ cat ${stubsdir}FileStubs/AggregatorPomEnd >> ${bundlesdir}/pom.xml
 for arg; do
 localgit="${travisworkingdir}$(cut -d' ' -f 2 <<< $arg)"
 for dir in $(find $localgit -mindepth 1 -maxdepth 1 -type d -path "*.tests"); do
+#IMPORTANT: Every testdir except edu.kit.ipd.sdq.kamp4aps.aps.propagation.tests will be deleted instead of moved, because they contain tests that can't be executed with the current JUnit configuration (Class TestCase is not API)#
+
+#To move all tests, uncomment the following lines:
+#echo "Moving $dir to $testsdir"
+#mv $dir $testsdir
+
+#And remove the following lines:
+folder=$(basename "$dir")
+if [ "$folder" == "edu.kit.ipd.sdq.kamp4aps.aps.propagation.tests" ]; then
 echo "Moving $dir to $testsdir"
 mv $dir $testsdir
+fi
+if [ "$folder" != "edu.kit.ipd.sdq.kamp4aps.aps.propagation.tests" ]; then
+echo "Deleting $dir without moving it to $testsdir"
+rm -r $dir
+fi
+#End lines to remove
 done
 done
 
